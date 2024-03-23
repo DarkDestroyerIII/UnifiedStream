@@ -15,6 +15,12 @@ class unifiedStream{
 
   public:
     //uStream(std::ostream& os1, std:: ostream& os2): os1(os1), os2(os2){}
+
+template<typename... Args>
+    unifiedStream(Args&... args) : size(sizeof...(args)), streams(new std::ostream*[size]) {
+int i = 0;
+        int transit[] = {(streams[i++] = &args, 0)...}; 
+    }
       
 
     ~unifiedStream(){
